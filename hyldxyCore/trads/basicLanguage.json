@@ -1,0 +1,17 @@
+{
+  "errors": {
+    "notificationsErrors": {
+      "fr-FR" : [
+        "Une erreur est survenue durant l'exécution du site web, il se peut que certaine fonctionnalité non pas été affiché correctement."
+      ]
+    },
+    "fatalErrors": {
+      "fr-FR": [
+        "Une erreur est survenue durant l'affichage du site web.<br />Nous avons été avertis du problème et nous nous en chargeons dès maintenant.<br />Le site est placé en maintenance."
+      ],
+      "en-GB": [
+        "An error occurred while display the web site.<br />We have been warned of the problem and we are taking care of it right now.<br />The web site will be placed under maintenance."
+      ]
+    }
+  }
+}

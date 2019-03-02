@@ -1,5 +1,6 @@
 <?php
 namespace hyldxyCore\system;
+use hyldxyCore\system\Notifications;
 
 /**
  *  PHP Version 7.3.1
@@ -75,9 +76,11 @@ class ErrorsHandler
                 // 2 - 8 - 2048 - 4096
                 $this->_errorTypeString = "Normal";
 
-                /**
-                 *  Ici sera présent un système de notification pour l'utilisateur du site indiquant qu'un incident technique ne présentant pas de risque est survenue
-                 */
+                if (Parser::IP_comparison(Parser::IP_parser(), Parser::JSON_parser(true)["errors"]["ipAllow"])) {
+                    Notifications::getInstance()->add($type, $text, $file, $line);
+                } else {
+                    // Pour les visiteurs, un message d'erreur personnalisé sera utilisé pour ne pas donner trop d'information
+                }
                 break;
         }
 

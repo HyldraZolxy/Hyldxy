@@ -17,7 +17,7 @@ class Parser
 {
     /**
      *  @param null $jsonParam boolean
-     *  @return mixed
+     *  @return mixed (If $jsonParam = true, is an Array; else is an object)
      */
     static public function JSON_parser($jsonParam = null)
     {
