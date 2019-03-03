@@ -16,9 +16,9 @@ namespace hyldxyCore\system;
 class Parser
 {
     /**
-     * @param string $path
-     * @param null|boolean $jsonParam
-     * @return mixed (If $jsonParam = true, is an Array; else is an object)
+     *  @param string $path
+     *  @param null|boolean $jsonParam
+     *  @return mixed (If $jsonParam = true, is an Array; else is an object)
      */
     static public function JSON_parser($path ,$jsonParam = null)
     {
@@ -26,7 +26,7 @@ class Parser
     }
 
     /**
-     * @return string
+     *  @return string
      */
     static public function IP_parser() {
         $argsServerVar = array(

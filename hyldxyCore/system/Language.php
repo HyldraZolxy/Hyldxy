@@ -66,6 +66,7 @@ class Language
         }
     }
 
+    // GETTERS //
 
     /**
      *  load the translation
@@ -82,8 +83,6 @@ class Language
 
         return false; // =X
     }
-
-    // GETTERS //
 
     /**
      *  Return the content of $_translationArray variable
