@@ -18,5 +18,6 @@ define("DS", DIRECTORY_SEPARATOR);
 define("ORIGIN", substr(__DIR__, 0, strlen(__DIR__) - 17)); // -17 = \hyldxyCore\other
 define("HYLDXYCORE", join(DS, array(ORIGIN, "hyldxyCore")));
 define("HYLDXYCONFIG", join(DS, array(HYLDXYCORE, "config")));
+define("HYLDXYTRADS", join(DS, array(HYLDXYCORE, "trads")));
 define("HYLDXYLOGS", join(DS, array(ORIGIN, "logsFiles")));
 define("WWW", join(DS, array(ORIGIN, "www")));

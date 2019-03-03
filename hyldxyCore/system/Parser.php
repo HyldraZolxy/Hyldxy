@@ -16,12 +16,13 @@ namespace hyldxyCore\system;
 class Parser
 {
     /**
-     *  @param null $jsonParam boolean
-     *  @return mixed (If $jsonParam = true, is an Array; else is an object)
+     * @param string $path
+     * @param null|boolean $jsonParam
+     * @return mixed (If $jsonParam = true, is an Array; else is an object)
      */
-    static public function JSON_parser($jsonParam = null)
+    static public function JSON_parser($path ,$jsonParam = null)
     {
-        return json_decode(file_get_contents(join(DS, array(HYLDXYCONFIG, "basic.json"))), $jsonParam);
+        return json_decode(file_get_contents($path), $jsonParam);
     }
 
     /**

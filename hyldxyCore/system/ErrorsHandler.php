@@ -1,6 +1,5 @@
 <?php
 namespace hyldxyCore\system;
-use hyldxyCore\system\Notifications;
 
 /**
  *  PHP Version 7.3.1
@@ -9,6 +8,7 @@ use hyldxyCore\system\Notifications;
  *  @package hyldxyCore
  *
  *  @comment This class manage all PHP errors
+ *  @TODO: Template system 0%
  *
  *  @link /hyldxyCore/system
  *  @author Kévin "Hyldra Zolxy" Robic <kevin.robic@outlook.fr>
@@ -48,26 +48,17 @@ class ErrorsHandler
             case 64:
                 $this->_errorTypeString = "Fatal";
 
-                if (Parser::JSON_parser(true)["errors"]["debug"]) {
-
-                    /**
-                     *  TODO: Le texte est temporaire, à terme les erreurs seront envoyées dans un parseur de template pour pouvoir les afficher correctement.
-                     */
-                    if (Parser::IP_comparison(Parser::IP_parser(), Parser::JSON_parser(true)["errors"]["ipAllow"])) {
-                        $this->_errorText = "Une erreur est arrivé, voici le détail:<br />
-                                             <br />
-                                             Fichier: " . $file . "<br />
-                                             Ligne en cause: " . $line . "<br />
-                                             Le message d'erreur: " . $text . "<br />
-                                             <br />
-                                             Merci de corriger cela au plus vite";
-                    } else {
-                        $this->_errorText = "Une erreur est survenue lors de l'utilisation du site, l'administrateur a été prévenu.<br />
-                                             Le site web reviendra bientôt !";
-                    }
+                if (Parser::JSON_parser(join(DS, array(HYLDXYCONFIG, "basic.json")), true)["errors"]["debug"]
+                    && Parser::IP_comparison(Parser::IP_parser(), Parser::JSON_parser(join(DS, array(HYLDXYCONFIG, "basic.json")), true)["errors"]["ipAllow"])) {
+                    $this->_errorText = "Une erreur est arrivé, voici le détail:<br />
+                                                 <br />
+                                                 Fichier: " . $file . "<br />
+                                                 Ligne en cause: " . $line . "<br />
+                                                 Le message d'erreur: " . $text . "<br />
+                                                 <br />
+                                                 Merci de corriger cela au plus vite";
                 } else {
-                    $this->_errorText = "Une erreur est survenue lors de l'utilisation du site, l'administrateur a été prévenu.<br />
-                                         Le site web reviendra bientôt !";
+                    $this->_errorText = Language::getInstance()->translate(Parser::JSON_parser(join(DS, array(HYLDXYTRADS, "basicLanguage.json")), true)["errors"]["fatalErrors"]);
                 }
 
                 echo $this->_errorText;
@@ -76,11 +67,13 @@ class ErrorsHandler
                 // 2 - 8 - 2048 - 4096
                 $this->_errorTypeString = "Normal";
 
-                if (Parser::IP_comparison(Parser::IP_parser(), Parser::JSON_parser(true)["errors"]["ipAllow"])) {
+                if (Parser::JSON_parser(join(DS, array(HYLDXYCONFIG, "basic.json")), true)["errors"]["debug"]
+                    && Parser::IP_comparison(Parser::IP_parser(), Parser::JSON_parser(join(DS, array(HYLDXYCONFIG, "basic.json")), true)["errors"]["ipAllow"])) {
                     Notifications::getInstance()->add($type, $text, $file, $line);
                 } else {
-                    // Pour les visiteurs, un message d'erreur personnalisé sera utilisé pour ne pas donner trop d'information
+                    Notifications::getInstance()->add($type, Language::getInstance()->translate(Parser::JSON_parser(join(DS, array(HYLDXYTRADS, "basicLanguage.json")), true)["errors"]["notificationsErrors"]));
                 }
+
                 break;
         }
 

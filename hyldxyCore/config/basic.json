@@ -5,5 +5,12 @@
       "127.0.0.1",
       "::1"
     ]
+  },
+  "language": {
+    "default": "fr-FR",
+    "languageAllow": [
+      "fr-FR",
+      "en-GB"
+    ]
   }
 }
