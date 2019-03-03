@@ -1,8 +1,11 @@
 {
   "errors": {
     "notificationsErrors": {
-      "fr-FR" : [
+      "fr-FR": [
         "Une erreur est survenue durant l'exécution du site web, il se peut que certaine fonctionnalité non pas été affiché correctement."
+      ],
+      "en-GB": [
+        "An error occurred while running the Web site, some functionality may not be displayed correctly."
       ]
     },
     "fatalErrors": {
